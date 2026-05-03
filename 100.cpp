@@ -28,3 +28,39 @@ class Solution {
         return mini.top();
     }
 };
+
+class Solution {
+  public:
+  int search(vector<int>&inorder,int val)
+  {
+      for(int i=0;i<inorder.size();i++)
+      {
+          if(inorder[i]==val)
+          {
+              return i;
+          }
+      }
+      return -1;
+  }
+  Node* helper(vector<int> &inorder, vector<int> &preorder,int &preidx,int left,int right)
+  {
+      if(left>right)return nullptr;
+      Node* root=new Node(preorder[preidx]);
+      int val=preorder[preidx];
+      int index=search(inorder,val);
+      preidx++;
+      root->left=helper(inorder,preorder,preidx,left,index-1);
+      root->right=helper(inorder,preorder,preidx,index+1,right);
+      return root;
+      
+  }
+    Node *buildTree(vector<int> &inorder, vector<int> &preorder) {
+        // code here
+        int left=0;
+        int right=inorder.size()-1;
+        int preidx=0;
+        Node* ans=helper(inorder,preorder,preidx,left,right);
+        return ans;
+        
+    }
+};
