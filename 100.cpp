@@ -64,3 +64,47 @@ class Solution {
         
     }
 };
+
+/*Structure of the Node of the BST is as
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    // Constructor to initialize a new node
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+
+class Solution {
+
+  public:
+  void in(Node* root,vector<int>&inorder)
+  {
+      if(root==nullptr)return;
+      in(root->left,inorder);
+      inorder.push_back(root->data);
+      in(root->right,inorder);
+  }
+  Node* inordertoBST(int s ,int e,vector<int>&inorder)
+  {
+      if(s>e)return nullptr;
+      int mid=(s+e)/2;
+      Node* ans=new Node(inorder[mid]);
+      ans->left=inordertoBST(s,mid-1,inorder);
+      ans->right=inordertoBST(mid+1,e,inorder);
+      return ans;
+  }
+    Node* balanceBST(Node* root) {
+        // Code here
+        vector<int> inorder;
+        in(root,inorder);
+        return inordertoBST(0,inorder.size()-1,inorder);
+        
+    }
+};
