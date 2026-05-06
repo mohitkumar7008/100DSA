@@ -185,3 +185,39 @@ class Solution {
         return ans;
     }
 };
+class Solution {
+  public:
+    bool search(vector<int>& arr, int key) {
+        // Code here
+        int s = 0;
+        int e = arr.size()-1;
+        int mid = s+(e-s)/2;
+        
+        while(s<=e){
+            mid = s+(e-s)/2;
+            if(arr[mid]==key) return true;
+            if(arr[s]==arr[mid] && arr[e]==arr[mid]){
+                s++;
+                e--;
+                continue;
+            }
+            if(arr[s]<=arr[mid]){
+                if(arr[s]<=key && arr[mid]>=key){
+                    e = mid-1;
+                }
+                else{
+                    s = mid+1;
+                }
+            }
+            else{
+                if(arr[mid]<=key && arr[e]>=key){
+                    s = mid+1;
+                }
+                else{
+                    e = mid-1;
+                }
+            }
+        }
+        return false;
+    }
+};
