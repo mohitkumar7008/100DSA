@@ -221,3 +221,47 @@ class Solution {
         return false;
     }
 };
+class Solution {
+  public:
+  void merge(vector<int>&arr,int &left,int &right, int &mid,vector<int>&temp)
+  {
+      int i=left;
+      int j=mid+1;
+      while(i<=mid&&j<=right)
+      {
+          if(arr[i]>arr[j])
+          {
+              temp.push_back(arr[j]);
+              j++;
+          }
+          else
+          {
+              temp.push_back(arr[i]);
+              i++;
+          }
+      }
+      while(i<=mid)
+      {
+          temp.push_back(arr[i]);
+          i++;
+      }
+      while(j<=right)
+      {
+          temp.push_back(arr[j]);
+          j++;
+      }
+      for(int i=0;i<temp.size();i++)
+      {
+          arr[i+left]=temp[i];
+      }
+  }
+    void mergeSort(vector<int>& arr, int l, int r) {
+        // code here
+        if(l>=r)return;
+        int mid=l+(r-l)/2;
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
+        vector<int>temp;
+        merge(arr,l,r,mid,temp);
+    }
+};
