@@ -185,6 +185,7 @@ class Solution {
         return ans;
     }
 };
+<<<<<<< HEAD
 class Solution {
   public:
     bool search(vector<int>& arr, int key) {
@@ -283,3 +284,65 @@ public:
         return -1;
     }
 };
+=======
+/*
+class Node {
+  public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    vector<vector<int>> verticalOrder(Node *root) {
+        // code here
+        map<int,map<int,vector<int>>>nodes;
+        queue<pair<Node*,pair<int,int>>>q;
+        vector<vector<int>>ans;
+        if(root==NULL)
+        {
+            return ans;
+        }
+        q.push(make_pair(root,make_pair(0,0)));
+        while(!q.empty())
+        {
+            pair<Node*,pair<int,int>> temp=q.front();
+            q.pop();
+            int hd=temp.second.first;
+            int lv=temp.second.second;
+            nodes[hd][lv].push_back(temp.first->data);
+            if(temp.first->left)
+            {
+                q.push(make_pair(temp.first->left,make_pair(hd-1,lv+1)));
+            }
+            if(temp.first->right)
+            {
+                q.push(make_pair(temp.first->right,make_pair(hd+1,lv+1)));
+            }
+        }
+        for(auto i : nodes)
+        {
+            vector<int> col;   // column vector
+            for(auto j : i.second)
+            {
+                for(auto k : j.second)
+                {
+                    col.push_back(k);
+                }
+            }
+            ans.push_back(col);
+        }
+
+        return ans;
+    }
+};
+
+>>>>>>> 80f3743 (vertical order traversal)
