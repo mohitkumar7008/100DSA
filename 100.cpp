@@ -4,7 +4,7 @@ class Solution {
   public:
     int kthLargest(vector<int> &arr, int k) {
         // code here
-        priority_queue<int,vector<int>,greater<int>>mini;
+        priority_queue<int, vector<int>, greater<int>> mini;
         for(int i=0;i<arr.size();i++)
         {
             int sum=0;
@@ -467,4 +467,43 @@ class Solution {
         
         return count;
     }
+};
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> m;
+        int rowStart=0;
+        int colStart=0;
+        int rowEnd=matrix.size()-1;
+        int colEnd=matrix[0].size()-1;
+        while(rowStart<=rowEnd&&colStart<=colEnd)
+        {
+            for(int i=colStart;i<=colEnd;i++)
+            {
+                m.push_back(matrix[colStart][i]);
+            }
+            rowStart++;
+            if(rowStart>rowEnd)break;
+            for(int i=rowStart;i<=rowEnd;i++)
+            {
+                m.push_back(matrix[i][colEnd]);
+            }
+            colEnd--;
+             if(colStart>colEnd)break;
+            for(int i=colEnd;i>=colStart;i--)
+            {
+                m.push_back(matrix[rowEnd][i]);
+            }
+            rowEnd--;
+             if(rowStart>rowEnd)break;
+            for(int i=rowEnd;i>=rowStart;i--)
+            {
+                m.push_back(matrix[i][colStart]);
+            }
+            colStart++;
+             if(colStart>colEnd)break;        
+        }
+        return m;
+    }  
+    
 };
