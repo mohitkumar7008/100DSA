@@ -530,7 +530,7 @@ class Solution {
             if(mp.find(val)!=mp.end())
             {
                 count+=mp[val];
-            }
+            }ffv
             mp[presum[i]]++;
         }
         return count;
