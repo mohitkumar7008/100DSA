@@ -507,3 +507,32 @@ public:
     }  
     
 };
+
+class Solution {
+  public:
+    int cntSubarrays(vector<int> &arr, int k) {
+        // code here
+        unordered_map<int,int>mp;
+        vector<int>presum(arr.size(),0);
+        int count=0;
+        presum[0]=arr[0];
+        for(int i=1;i<arr.size();i++)
+        {
+          presum[i]=presum[i-1]+arr[i];
+        }
+        for(int i=0;i<arr.size();i++)
+        {
+            if(presum[i]==k)
+            {
+                count++;
+            }
+            int val=presum[i]-k;
+            if(mp.find(val)!=mp.end())
+            {
+                count+=mp[val];
+            }
+            mp[presum[i]]++;
+        }
+        return count;
+    }
+};
