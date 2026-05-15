@@ -527,7 +527,7 @@ class Solution {
                 count++;
             }
             int val=presum[i]-k;
-            if(mp.find(val)!=mp.end())
+            if(mp.find(val)!=mp.end())fw
             {
                 count+=mp[val];
             }ffv
