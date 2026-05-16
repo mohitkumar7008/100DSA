@@ -536,3 +536,45 @@ class Solution {
         return count;
     }
 };
+class Solution {
+  public:
+    void nextPermutation(vector<int>& arr) {
+        // code here
+        
+        
+        int pivot=-1;
+        int temp;
+        int index;
+        for(int i=arr.size()-2;i>=0;i--)
+        {
+            if(arr[i]<arr[i+1])
+            {
+                pivot=i;
+                break;
+            }
+        }
+        if(pivot==-1)
+        {
+            reverse(arr.begin(),arr.end());
+            return;
+        }
+        int mini;
+        for(int i=arr.size()-1;i>pivot;i--)
+        {
+            if(arr[i]>arr[pivot])
+            {
+                swap(arr[i],arr[pivot]);
+                break;
+            }
+        }
+        
+        int i=pivot+1;
+        int j=arr.size()-1;
+        while(i<=j)
+        {
+            swap(arr[i],arr[j]);
+            i++;
+            j--;
+        }
+    }
+};
