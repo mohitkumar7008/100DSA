@@ -578,3 +578,29 @@ class Solution {
         }
     }
 };
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        // code here
+        unordered_map<int,int>mp;
+        int resmax;
+        int prefixSum=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            prefixSum+=arr[i];
+            if(prefixSum==k)
+            {
+                resmax=i+1;
+            }
+            else if(mp.find(prefixSum-k)!=mp.end())
+            {
+                resmax=max(resmax,i-mp[prefixSum-k]);
+            }
+            if(mp.find(prefixSum)==mp.end())
+            {
+                mp[prefixSum]=i;
+            }
+        }
+        return resmax;
+    }
+};
