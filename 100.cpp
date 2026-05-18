@@ -605,3 +605,56 @@ class Solution {
     }
 };
 mohit kamboj
+class Solution {
+  public:
+    vector<int> findMajority(vector<int>& arr) {
+        // Code here
+        int first=INT_MIN;
+        int second=INT_MIN;
+        int fc=0;
+        int sc=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i]==first)
+            {
+                fc++;
+            }
+            else if(arr[i]==second)
+            {
+                sc++;
+            }
+            else if(fc==0)
+            {
+                first=arr[i];
+                fc=1;
+            }
+            else if(sc==0)
+            {
+                second=arr[i];
+                sc=1;
+            }
+            else
+            {
+                fc--;
+                sc--;
+            }
+        }
+        // if(fc==sc)
+        // {
+        //     return {fc};
+        // }
+        fc=0;
+        sc=0;
+        vector<int>ans;
+        for(int i=0;i<arr.size();i++)
+        {
+         if(first==arr[i])fc++;
+         else if(second==arr[i])sc++;
+        }
+        if(fc>arr.size()/3)ans.push_back(first);
+        if(sc>arr.size()/3)ans.push_back(second);
+         
+         sort(ans.begin(),ans.end());
+         return ans;
+    }
+};
