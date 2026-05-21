@@ -733,3 +733,26 @@ class Solution {
         return false;
     }
 };
+class Solution {
+  public:
+    vector<int> nthRowOfPascalTriangle(int n) {
+        // code here
+        
+        vector<int>ans;
+        if(n==0)return {};
+        ans.push_back(1);
+        if(n==1)return ans;
+        for(int i=1;i<n;i++)
+        {
+            vector<int>temp;
+            temp.push_back(1);
+            for(int j=1;j<ans.size();j++)
+            {
+                temp.push_back(ans[j-1]+ans[j]);
+            }
+            temp.push_back(1);
+            ans=temp;
+        }
+        return ans;
+    }
+};
