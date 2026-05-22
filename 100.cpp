@@ -773,5 +773,4 @@ public:
         return maxProfit;
     }
 };
-//we will buy on 1st day on he next day we will check whether the price of stocktoday is
-// moreorless than our buyinn we will sell it 
+
