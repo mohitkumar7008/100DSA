@@ -756,3 +756,24 @@ class Solution {
         return ans;
     }
 };
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+          int bestBuy=prices[0];
+        int maxProfit=0;
+        for(int i=1;i<prices.size();i++)
+        {
+            if(prices[i]>bestBuy)
+            {
+                maxProfit=max(maxProfit,prices[i]-bestBuy);
+            }
+            bestBuy=min(prices[i],bestBuy);
+        }
+        return maxProfit;
+    }
+};
+//we will buy on 1st day on he next day we will check whether the price of stocktoday is
+// moreorless than our buying price if more then we will sell it only if we are 
+// getting more profit than previous profit then we will check buying price if the current price is
+// less than our previous buying price than that will be our new buying price
