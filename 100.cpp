@@ -923,3 +923,14 @@ public:
         return count;
     }
 };
+class Solution {
+  public:
+    void rotateArr(vector<int>& arr, int d) {
+        // code here
+        d=d%arr.size();
+        int e=arr.size()-d;
+        reverse(arr.begin(),arr.end());
+        reverse(arr.begin(),arr.begin()+e);
+        reverse(arr.begin()+e,arr.end());
+    }
+};
